@@ -27,7 +27,7 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.originListOfNotes = this.messagingService.getListOfMessage();
-    this.listOfNotes =    this.originListOfNotes;
+    this.listOfNotes = this.originListOfNotes;
     this.createForm();
     this.createFilter();
     this.sub.push(
@@ -35,7 +35,6 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
         .debounceTime(500)
         .subscribe(
           (data) => {
-            console.log(data);
             this.doFiltering(data['filters']);
           },
           (error) => {
@@ -50,11 +49,8 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    this.originListOfNotes = this.messagingService.getListOfMessage();
-    // this.listOfNotes =    this.originListOfNotes;
     if (this.listOfNotes.length > 0) {
       this.createForm();
-      this.setCurrentMessage(this.listOfNotes[0].id);
     }
 
   }
@@ -66,12 +62,11 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   setCurrentMessage(id) {
-    const tmpMsg = this.originListOfNotes.filter((a) => {
+    const tmpMsg = this.listOfNotes.filter((a) => {
       return a.id === id;
     });
     this.currentMessage = tmpMsg[0];
     this.setFormValues(this.currentMessage);
-
 
   }
 
@@ -111,8 +106,6 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSubmitAction() {
-    console.log(this.messageEditForm.value);
-    console.log(this.messageEditForm.get('id').value);
     this.listOfNotes.forEach((note) => {
       if (note.id === this.messageEditForm.get('id').value) {
         Object.assign(note, this.messageEditForm.value);
@@ -138,19 +131,17 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
   addNewMessage() {
     const tmpMessage = new Message(this.getNewId(), 'New Header', '', [], Date.now());
     this.originListOfNotes.push(tmpMessage);
-    this.listOfNotes.push(tmpMessage);
-    console.log('New ID for message that will be created: ', tmpMessage.id);
+    this.listOfNotes = this.originListOfNotes;
+    this.filterForm.patchValue({
+      filters: ''
+    });
+
     this.setCurrentMessage(tmpMessage.id);
-    this.ngOnChanges();
   }
 
   getNewId() {
-    if (this.listOfNotes && this.listOfNotes.length && this.listOfNotes[this.listOfNotes.length - 1]['id']
-      && typeof  this.listOfNotes[this.listOfNotes.length - 1]['id'] !== 'undefined') {
-      return this.listOfNotes[this.listOfNotes.length - 1]['id'] + 1;
-    } else {
-      return 1;
-    }
+
+    return Math.round(Math.random() * 10000);
   }
 
   private createFilter() {
@@ -170,9 +161,7 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
         tmpListOfKeywords = note.keywords.toString().split(',');
         this.filters.forEach((filter) => {
           tmpListOfKeywords.forEach((key) => {
-            console.log('key ', key, 'filter ', filter);
             if (key === filter) {
-              console.log('Equals found! key: ', key, 'filter ', filter, 'curent note :', note);
               this.listOfNotes.push(note);
             }
 
@@ -180,12 +169,15 @@ export class MessengerComponent implements OnInit, OnChanges, OnDestroy {
         });
 
       });
+      if (this.listOfNotes.length > 0) {
+        this.setCurrentMessage(this.listOfNotes[0].id);
+      }
     } else {
       this.listOfNotes = this.originListOfNotes;
     }
 
-    console.log('filtered list of notes', this.listOfNotes);
     this.ngOnChanges();
+
   }
 
 

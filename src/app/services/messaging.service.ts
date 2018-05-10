@@ -18,7 +18,7 @@ export class MessagingService {
 
     const tmpMsgListArray = [];
     for (let i = 0; i < 5; i++) {
-      tmpMsgListArray.push(new Message(Math.round(Math.random() * 100),
+      tmpMsgListArray.push(new Message(Math.round(Math.random() * 10000),
         'Note header' + i,
         'Note body' + i,
         ['test1', 'test2', 'test3' + i],

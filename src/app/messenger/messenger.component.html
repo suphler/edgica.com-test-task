@@ -27,7 +27,9 @@
     <div class=" col-md-6 col-sm-12 ">
       <div class="rightbox">
         <div class="search d-block d-sm-none d-md-block">
-          <input class="mb-3 float-right" type="text" placeholder="Keywords search">
+          <form [formGroup]="filterForm">
+          <input formControlName="filters" class="mb-3 float-right" type="text" placeholder="Keywords search">
+          </form>
         </div>
         <div *ngIf="listOfNotes.length > 0">
           <form [formGroup]="messageEditForm" (submit)="onSubmitAction();">
