@@ -1,0 +1,177 @@
+//media queries
+@mixin mobile {
+  @media (max-width: #{$tablet-width - 1}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$large-tablet-width - 1} ) {
+    @content;
+  }
+}
+
+@mixin tablet-large {
+  @media (max-width: #{$desktop-width - 1}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$widescreen-width - 1}) {
+    @content;
+  }
+}
+
+@mixin widescreen  {
+  @media (min-width: #{$widescreen-width}) {
+    @content;
+  }
+}
+
+@mixin landscape {
+  @media only screen
+  and (orientation: landscape) {
+    @content;
+  }
+}
+@mixin nexus-6p-landscape {
+  @media only screen
+  and (min-height: 412px)
+  and (max-height: 435px)
+  and (min-width: 732px)
+  and (max-width: 773px)
+  and (orientation:landscape){
+    @content;
+  }
+}
+@mixin pixel-ratio-2 {
+  @media screen
+  and (max-width: #{$large-tablet-width - 1} )
+  and (-webkit-device-pixel-ratio: 2)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (-webkit-max-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+@mixin pixel-ratio-3 {
+  @media screen
+  and (max-width: #{$tablet-width - 1})
+  and (-webkit-device-pixel-ratio: 3)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (-webkit-max-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+/* ----------- iPhone 5/5s ----------- */
+
+/* Portrait and Landscape */
+@mixin iPhone-5 {
+  @media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 568px) {
+    @content;
+  }
+}
+
+@mixin iPhone-5-landscape {
+  @media only screen
+  and (max-height: 320px)
+  and (max-width: 568px)
+  and (orientation:landscape){
+    @content;
+  }
+}
+
+
+/* ----------- iPhone 6, Nexus 6Pm Nexus 5x ----------- */
+
+/* Portrait and Landscape */
+@mixin iPhone-6 {
+  @media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+@mixin iPhone-6-plus {
+  @media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+
+/* ----------- Galaxy S5 ----------- */
+
+/* Portrait and Landscape */
+@mixin galaxy-s5 {
+  @media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+@mixin galaxy-s5-landscape {
+  @media only screen
+  and (max-height: 360px)
+  and (max-width: 640px)
+  and (orientation:landscape){
+    @content;
+  }
+}
+
+/* iPhone 6 Plus landscape */
+@mixin iphone-6plus-landscape {
+  @media only screen and (min-width: 735px) and (max-width: 737px) and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio : 3)
+  and (-webkit-device-pixel-ratio : 3)
+  {
+    @content;
+  }
+}
+
+/* ----------- Mozilla > 3.5 ----------- */
+@mixin mozilla {
+  @media all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm) {
+    @content;
+  }
+}
+
+@mixin edge {
+  @supports (-ms-ime-align:auto) {
+    @content;
+  }
+}
+
+/* ----------- Landing responsive ----------- */
+@mixin tablet-landscape{
+  @media (max-width: $tablet-landscape ) {
+    @content;
+  }
+}
+@mixin tablet-portrait{
+  @media (max-width: $tablet-portrait ) {
+    @content;
+  }
+}
+@mixin mobile-landscape{
+  @media (max-width: $mobile-landscape ) {
+    @content;
+  }
+}
+@mixin mobile-portrait{
+  @media (max-width: $mobile-portrait ) {
+    @content;
+  }
+}

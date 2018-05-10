@@ -3,16 +3,28 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { MessagingService} from './services/messaging.service';
+import { MessengerComponent } from './messenger/messenger.component';
+import {AlertModule} from 'ngx-bootstrap';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MessengerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AlertModule.forRoot(),
+    AngularFontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    MessagingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,66 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="search d-block d-sm-block d-md-none col-12 ">
+      <form [formGroup]="filterForm">
+      <input  formControlName="filters" class="col-12 mb-3 " type="text" placeholder="Keywords search">
+      </form>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-lg-2 col-md-12 col-sm-12">
+      <input class="col-lg-12 col-md-12 col-sm-12 btn rounded bg-blue text-white text-uppercase border border-dark mb-2"
+             type="button" value="Add new note" (click)="addNewMessage()">
+      <div class="notes-list-box mt-3">
+        <ul class="list-group">
+          <div *ngFor="let note of listOfNotes">
+            <li class="list-group-item" value="{{note.id}}" (click)="setCurrentMessage(note.id)">
+              <!--{{note.id}}-->
+              {{note.header}}
+              <i class="list-group-item-caret fa fa-caret-right  float-right"
+                 [ngClass]="{'show': checkId(note.id)}" aria-hidden="true"></i>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div class=" col-md-6 col-sm-12 ">
+      <div class="rightbox">
+        <div class="search d-block d-sm-none d-md-block">
+          <input class="mb-3 float-right" type="text" placeholder="Keywords search">
+        </div>
+        <div *ngIf="listOfNotes.length > 0">
+          <form [formGroup]="messageEditForm" (submit)="onSubmitAction();">
+            <div class="msg-editbox mt-2">
+              <div class="msg-edit-header">
+                <input type="text" formControlName="header" placeholder="{{currentMessage['header']}}">
+
+              </div>
+              <div class="msg-edit-body">
+                <textarea formControlName="body" name="msg-edit-body" id="msg-edit-body" cols="30" rows="10"
+                          value="{{currentMessage['body']}}">{{currentMessage['body']}}</textarea>
+              </div>
+              <div class="msg-edit-tags mt-1">
+                <input formControlName="keywords" class="msg-edit-tags-keywords rounded right" type="text"
+                       placeholder="{{currentMessage['keywords']}}">
+                <input formControlName="date" class="msg-edit-tags-date rounded right" type="date"
+                       value="{{getCurrentMessageData()}}">
+              </div>
+              <div class="msg-btn-block  mt-3 float-right">
+                <button class="btn rounded bg-blue text-white text-uppercase border border-dark " type="submit"
+                        value="save">save
+                </button>
+                <button class="btn rounded bg-blue text-white text-uppercase border border-dark " type="button"
+                        value="delete" (click)="onDelete(currentMessage.id)">delete
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

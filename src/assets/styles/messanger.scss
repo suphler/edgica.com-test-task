@@ -1,0 +1,67 @@
+.btn {
+  font-size: 0.7em;
+  padding: 7px 30px;
+  margin-right: 5px;
+}
+
+.fa {
+  font-size: 1.5em !important;
+  .active {
+    visibility: visible;
+    font-size: 1.5em !important;
+
+  }
+}
+
+.list-group-item {
+  padding: 0.2rem 1.25rem;
+  &:hover {
+    background-color: cornflowerblue;
+    cursor: pointer;
+  }
+  .show {
+    visibility: visible !important;
+    font-size: 1.5em !important;
+
+  }
+  &-caret {
+    visibility: hidden;
+    font-size: 1.5em;
+
+  }
+
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+.msg {
+  &-edit {
+    &-header {
+      width: 100%;
+      input {
+        width: 100%;
+
+      }
+    }
+    &-body {
+      width: 100%;
+      textarea {
+        width: 100%;
+
+      }
+
+    }
+
+    &-tags {
+      &-keywords {
+        width: 64%;
+      }
+      &-date {
+        width: 35%;
+      }
+    }
+  }
+}
+
